@@ -35,10 +35,14 @@ function createGrid(nRows){
     const cardList = document.querySelectorAll('.card-inner');
     cardList.forEach(function(element){
         element.addEventListener('click',function(){
-            element.classList.toggle('is-flipped');
+            flipCard(this);
         });
     });
 
+}
+
+function flipCard(element) {
+    element.classList.toggle('is-flipped');
 }
 
 const playButton = document.querySelector('.play-button');

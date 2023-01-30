@@ -1,6 +1,15 @@
 const grid = document.querySelector('.grid-container');
 
+function deleteGrid() {
+    let child = grid.lastElementChild; 
+    while (child) {
+        grid.removeChild(child);
+        child = grid.lastElementChild;
+    }
+}
+
 function createGrid(nRows){
+    deleteGrid();
 
     for(let i=0;i<nRows;i++){
         const row = document.createElement('div');

@@ -31,6 +31,14 @@ function createGrid(nRows){
         }
         grid.appendChild(row);
     }
+
+    const cardList = document.querySelectorAll('.card-inner');
+    cardList.forEach(function(element){
+        element.addEventListener('click',function(){
+            element.classList.toggle('is-flipped');
+        });
+    });
+
 }
 
 const playButton = document.querySelector('.play-button');

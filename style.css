@@ -20,11 +20,13 @@ header {
   .grid-container{
     display: flex;
     flex-direction: column;
+    row-gap: 30px;
+    padding: 30px;
   }
 
   .row{
     display: flex;
-    justify-content: space-between;
+    column-gap: 30px;
   }
 
   .card{

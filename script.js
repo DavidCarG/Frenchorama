@@ -1,3 +1,36 @@
+//Fisher-Yates shuffle algorithm
+function shuffleArray(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
+//Here we creat the array for the words to be used in the memorama
+let words = [];
+function modifyWords(n){
+    words = [];
+    let j=0;
+    shuffleArray(bodyParts);
+    for(let i=0;i<n;i++){
+        words[j++] = bodyParts[i].french;
+        words[j++] = bodyParts[i].english; 
+    }
+    shuffleArray(words);
+}
+
 const grid = document.querySelector('.grid-container');
 
 function deleteGrid() {
@@ -11,6 +44,9 @@ function deleteGrid() {
 function createGrid(nRows){
     deleteGrid();
 
+    let w=0;
+    modifyWords((nRows*4)/2);
+
     for(let i=0;i<nRows;i++){
         const row = document.createElement('div');
         row.classList.add('row');
@@ -23,6 +59,7 @@ function createGrid(nRows){
             cardFront.classList.add('card-front');
             const cardBack = document.createElement('div');
             cardBack.classList.add('card-back');
+            cardBack.textContent = words[w++];
 
             cardInner.appendChild(cardFront);
             cardInner.appendChild(cardBack);

@@ -47,6 +47,10 @@ header {
   .card-inner.is-flipped{
     transform: rotateY(180deg);
   }
+
+  .disabled{
+    cursor: default;
+  }
   
   .card-front,
   .card-back{

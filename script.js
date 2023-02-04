@@ -95,10 +95,11 @@ function check(french,english){
 let flipCount = 0;
 let flag = false;
 function flipCard(element) {
-    if(flag || element.classList.contains('disabled'))
+    if(flag || element.classList.contains('disabled') || element.classList.contains('checking'))
         return;
 
     element.classList.toggle('is-flipped');
+    element.classList.add('checking');
     if(++flipCount===2){
         flag = true;
 
@@ -109,13 +110,18 @@ function flipCard(element) {
 
         if(res){
             console.log("Theyre a match");
-            pairW[0].classList.add('disabled');
-            pairW[1].classList.add('disabled');
+            for(let i=0;i<pairW.length;i++){
+                pairW[i].classList.add('disabled');
+                pairW[i].classList.remove('checking');
+            }
+
             flag = false;
             }else{
             setTimeout(() => {
-                pairW[0].classList.toggle('is-flipped');
-                pairW[1].classList.toggle('is-flipped');
+                for(let i=0;i<pairW.length;i++){
+                    pairW[i].classList.toggle('is-flipped');
+                    pairW[i].classList.remove('checking');
+                }
                 console.log("Nope");
                 flag = false;
               }, 2000);
@@ -126,9 +132,28 @@ function flipCard(element) {
 }
 
 //Play mechanics
-const playButton = document.querySelector('.play-button');
+let playFlag = false;
+const playButton = document.getElementById('play-button');
 playButton.addEventListener('click',function(){
+    if(playFlag){
+        deleteGrid();
+        document.getElementById('size').disabled = false;
+        document.getElementById('topics-button').disabled = false;
+        document.getElementById('shuffle-button').disabled = true;
+        playButton.textContent = "Play";
+        playFlag = false;
+        return;
+    }
+    
     const option = document.getElementById('size');
     const val = option.value;
     createGrid(val);
+
+    document.getElementById('size').disabled = true;
+    document.getElementById('topics-button').disabled = true;
+    document.getElementById('shuffle-button').disabled = false;
+
+    playButton.textContent = "End Game";
+    playFlag = true;
+
 });

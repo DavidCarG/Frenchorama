@@ -132,50 +132,6 @@ function flipCard(element) {
 }
 
 //Play mechanics
-// let playFlag = false;
-// const playButton = document.getElementById('play-button');
-// playButton.addEventListener('click',function(){
-// const loadingAn = document.getElementById('sliding-image');
-// playButton.disabled = true;
-// if(playFlag){
-//     loadingAn.classList.toggle('animate');
-//     setTimeout(function(){
-//     deleteGrid();
-//     document.getElementById('size').disabled = false;
-//     document.getElementById('topics-button').disabled = false;
-//     document.getElementById('shuffle-button').disabled = true;
-//     playButton.textContent = "Play";
-//     playFlag = false;
-//     },2000);
-    
-//     setTimeout(function(){
-//         loadingAn.classList.toggle('animate');
-//     },8000);
-//     return;
-// }
-
-// loadingAn.classList.toggle("animate");
-// document.getElementById('size').disabled = true;
-// document.getElementById('topics-button').disabled = true;
-// setTimeout(function(){
-// const option = document.getElementById('size');
-// const val = option.value;
-// createGrid(val);
-
-// document.getElementById('shuffle-button').disabled = false;
-
-// playButton.textContent = "End Game";
-// playFlag = true;
-
-// },2000);
-
-// setTimeout(function(){
-//     loadingAn.classList.toggle('animate');
-// },8000);
-
-// playButton.disabled = false;
-// });
-
 let playFlag = false;
 const playButton = document.getElementById('play-button');
 playButton.addEventListener('click', function() {
@@ -217,3 +173,25 @@ playButton.addEventListener('click', function() {
     document.getElementById('shuffle-button').disabled = false;
   }, 8000);
 });
+
+//Shuffle button
+const shuffleButton = document.getElementById('shuffle-button');
+shuffleButton.addEventListener('click',function(){
+    const loadingAn = document.getElementById('sliding-image');
+    loadingAn.classList.toggle("animate");
+    shuffleButton.disabled = true;
+    playButton.disabled = true;
+    setTimeout(function() {
+        const option = document.getElementById('size');
+        const val = option.value;
+        createGrid(val);
+      }, 2000);
+      setTimeout(function() {
+        loadingAn.classList.toggle('animate');
+        shuffleButton.disabled = false;
+        playButton.disabled = false;
+      }, 8000);
+});
+
+
+

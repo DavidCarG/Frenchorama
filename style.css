@@ -8,8 +8,7 @@ header {
     background-color: #333;
     color: #fff;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    column-gap: 780px;
     padding: 10px;
     margin: 0px;
     z-index: 3;
@@ -17,6 +16,11 @@ header {
 
   header button:hover {
     color: #ccc;
+  }
+
+  .configuration{
+    display: flex;
+    column-gap: 50px;
   }
 
   .content{
@@ -31,6 +35,8 @@ header {
     flex-direction: column;
     row-gap: 40px;
     padding: 30px;
+    height: 540px;
+    overflow: auto;
   }
 
   .row{

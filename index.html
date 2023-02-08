@@ -12,15 +12,17 @@
 <body>
     <header>
         <div>Frenchorama</div>
-        <select name="size" id="size">
-            <option value="2">2×4</option>
-            <option value="3">3×4</option>
-            <option value="4">4*4</option>
-            <option value="5">5*4</option>
-        </select>
-        <button type="button" id="play-button">Play</button>
-        <button type="button" id="topics-button">Topics</button>
-        <button type="button" id="shuffle-button" disabled>Re-shuffle</button>
+        <div class="configuration">
+            <select name="size" id="size">
+                <option value="2">2×4</option>
+                <option value="3">3×4</option>
+                <option value="4">4*4</option>
+                <option value="5">5*4</option>
+            </select>
+            <button type="button" id="play-button" >Play</button>
+            <button type="button" id="topics-button">Topics</button>
+            <button type="button" id="shuffle-button" disabled>Re-shuffle</button>
+        </div>
     </header>
 
     <img id="sliding-image" src="./img/loading-kitties.jpg">

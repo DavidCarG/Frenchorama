@@ -12,16 +12,24 @@ header {
     align-items: center;
     padding: 10px;
     margin: 0px;
+    z-index: 3;
   }
 
   header button:hover {
     color: #ccc;
   }
 
+  .content{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
   .grid-container{
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 40px;
     padding: 30px;
   }
 
@@ -32,7 +40,7 @@ header {
 
   .card{
     margin: 0px;
-    width: 240px;
+    width: 180px;
     height: 150px;
   }
   
@@ -76,4 +84,28 @@ header {
     transform: rotateY(180deg);
     background-color: rgb(241, 241, 171);
     border: solid rgb(41, 41, 117);
+  }
+
+  /*Sliding image animation*/
+  #sliding-image{
+    width: 830px;
+    height: 580px;
+    position: absolute;
+    top: -600px;
+    left :19.5%;
+    z-index: 2;
+    border-radius: 25px;
+  }
+  
+  .animate {
+    animation: drop 6s ease forwards;
+  }
+  
+  @keyframes drop {
+    0%{}
+    20%{transform: translateY(700px);}
+    30%{transform: translateY(650px);}
+    60%{transform: translateY(650px);}
+    70%{transform: translateY(700px);}
+    100%{transform: translateY(0px);}
   }

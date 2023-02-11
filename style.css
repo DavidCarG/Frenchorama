@@ -11,16 +11,63 @@ header {
     column-gap: 780px;
     padding: 10px;
     margin: 0px;
+    height: 30px;
     z-index: 3;
-  }
-
-  header button:hover {
-    color: #ccc;
   }
 
   .configuration{
     display: flex;
     column-gap: 50px;
+  }
+
+  select{
+    margin-top: 5px;
+    border-style: none;
+    border-radius: 7px;
+    width: 60px;
+    height: 20px;
+  }
+
+  option{
+    color: rgb(0, 0, 0);
+  }
+
+  select option:nth-child(odd){
+    background-color: #c1c6f5;
+  }
+
+  select option:nth-child(even){
+    background-color: rgb(145, 168, 218);
+  }
+
+  #play-button{
+      width: 50px;
+      transition: width 0.15s ease-in-out;
+  }
+
+  #play-button.end-game{
+    width: 90px;
+  }
+
+  button{
+    color: white;
+    border-style: none;
+    border-radius: 7px;
+    background-color: #58cc02;
+    box-shadow: 0 5px 0 #58a700;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  button:active:not(.disabled){
+    box-shadow: none;
+    transform: translateY(5px);
+  }
+
+  button:disabled{
+    background-color: #cc1a02;
+    box-shadow: 0 5px 0 #b81600;
+    cursor: default;
   }
 
   .content{
@@ -95,7 +142,7 @@ header {
   /*Sliding image animation*/
   #sliding-image{
     width: 830px;
-    height: 580px;
+    height: 560px;
     position: absolute;
     top: -600px;
     left :19.5%;
@@ -110,8 +157,8 @@ header {
   @keyframes drop {
     0%{}
     20%{transform: translateY(700px);}
-    30%{transform: translateY(650px);}
-    60%{transform: translateY(650px);}
+    30%{transform: translateY(660px);}
+    60%{transform: translateY(660px);}
     70%{transform: translateY(700px);}
     100%{transform: translateY(0px);}
   }

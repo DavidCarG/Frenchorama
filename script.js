@@ -142,6 +142,7 @@ playButton.addEventListener('click', function() {
     document.getElementById('shuffle-button').disabled = true;
     setTimeout(function() {
       deleteGrid();
+      playButton.classList.toggle('end-game');
       playButton.textContent = "Play";
     }, 2000);
 
@@ -163,6 +164,7 @@ playButton.addEventListener('click', function() {
     const val = option.value;
     createGrid(val);
 
+    playButton.classList.toggle('end-game');
     playButton.textContent = "End Game";
     playFlag = true;
   }, 2000);

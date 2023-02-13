@@ -211,6 +211,7 @@ const winningScreen = document.getElementById('winning-screen');
 function checkWin(){
   winCount+=2;
   if(winCount===nCards){
+    winCount=0;
     winningScreen.classList.toggle('animate-win');
     setTimeout(function(){
       winningScreen.style.transform = 'translateY(430px)';

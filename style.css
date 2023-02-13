@@ -162,3 +162,64 @@ header {
     70%{transform: translateY(700px);}
     100%{transform: translateY(0px);}
   }
+
+  /*Winning screen*/
+  #winning-screen{
+    font-family: 'Julee',cursive;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: -300px;
+    padding: 15px;
+    background-color: rgb(248, 200, 233);
+    border-radius: 25px;
+    height: 250px;
+    width: 310px;
+  }
+
+
+  
+  #winning-screen h2{
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+  }
+  
+  #winning-screen h4{
+    margin: 0 0 15px 0;
+  }
+  
+  .words-learned{
+    width: 95%;
+    height: 50%;
+    border-radius: 15px;
+    border: 1px solid black;
+    overflow: auto;
+  }
+  
+  .winning-buttons{
+    display: flex;
+    justify-content: center;
+    margin: 15px 0 0 0;
+    column-gap: 40px;
+  }
+
+  .animate-win{
+    animation: drop-once  0.5s ease forwards;
+  }
+
+  @keyframes drop-once{
+   0%{}
+   95%{transform: translateY(440px);}
+   100%{transform: translateY(430px);} 
+  }
+
+  .after-win{
+    animation: pull-back 0.75s ease forwards;
+  }
+
+  @keyframes pull-back {
+   0%{};
+   20%{transform: translateY(440px);}
+   100%{transform: translateY(-300px);} 
+  }

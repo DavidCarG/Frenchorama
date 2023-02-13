@@ -1,3 +1,5 @@
+let winCount = 0;
+let nCards;
 //Fisher-Yates shuffle algorithm
 function shuffleArray(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -22,6 +24,7 @@ function shuffleArray(array) {
 let words = [];
 let wordMap = [];
 function modifyWords(n){
+    nCards=n*2;
     words = [];
     let j=0;
     shuffleArray(bodyParts);
@@ -109,13 +112,12 @@ function flipCard(element) {
         let res = check(wOne,wTwo);
 
         if(res){
-            console.log("Theyre a match");
             for(let i=0;i<pairW.length;i++){
                 pairW[i].classList.add('disabled');
                 pairW[i].classList.remove('checking');
             }
-
             flag = false;
+            checkWin();
             }else{
             setTimeout(() => {
                 for(let i=0;i<pairW.length;i++){
@@ -133,29 +135,10 @@ function flipCard(element) {
 
 //Play mechanics
 let playFlag = false;
+const loadingAn = document.getElementById('sliding-image');
 const playButton = document.getElementById('play-button');
-playButton.addEventListener('click', function() {
-  const loadingAn = document.getElementById('sliding-image');
-  playButton.disabled = true;
-  if (playFlag) {
-    loadingAn.classList.toggle('animate');
-    document.getElementById('shuffle-button').disabled = true;
-    setTimeout(function() {
-      deleteGrid();
-      playButton.classList.toggle('end-game');
-      playButton.textContent = "Play";
-    }, 2000);
 
-    setTimeout(function() {
-      loadingAn.classList.toggle('animate');
-      document.getElementById('size').disabled = false;
-      document.getElementById('topics-button').disabled = false;
-      playFlag = false;
-      playButton.disabled = false;
-    }, 8000);
-    return;
-  }
-
+function playGame(){
   loadingAn.classList.toggle("animate");
   document.getElementById('size').disabled = true;
   document.getElementById('topics-button').disabled = true;
@@ -174,12 +157,38 @@ playButton.addEventListener('click', function() {
     playButton.disabled = false;
     document.getElementById('shuffle-button').disabled = false;
   }, 8000);
+};
+
+function endGame(){
+  loadingAn.classList.toggle('animate');
+    document.getElementById('shuffle-button').disabled = true;
+    setTimeout(function() {
+      deleteGrid();
+      playButton.classList.toggle('end-game');
+      playButton.textContent = "Play";
+    }, 2000);
+
+    setTimeout(function() {
+      loadingAn.classList.toggle('animate');
+      document.getElementById('size').disabled = false;
+      document.getElementById('topics-button').disabled = false;
+      playFlag = false;
+      playButton.disabled = false;
+    }, 8000);
+};
+
+playButton.addEventListener('click', function() {
+  playButton.disabled = true;
+  if (playFlag) {
+    endGame();  
+    return;
+  }
+  playGame();
 });
 
 //Shuffle button
 const shuffleButton = document.getElementById('shuffle-button');
-shuffleButton.addEventListener('click',function(){
-    const loadingAn = document.getElementById('sliding-image');
+function shuffle(){
     loadingAn.classList.toggle("animate");
     shuffleButton.disabled = true;
     playButton.disabled = true;
@@ -193,7 +202,38 @@ shuffleButton.addEventListener('click',function(){
         shuffleButton.disabled = false;
         playButton.disabled = false;
       }, 8000);
+}
+shuffleButton.addEventListener('click',shuffle);
+
+//Wining options
+const winningScreen = document.getElementById('winning-screen');
+
+function checkWin(){
+  winCount+=2;
+  if(winCount===nCards){
+    winningScreen.classList.toggle('animate-win');
+    setTimeout(function(){
+      winningScreen.style.transform = 'translateY(430px)';
+    },500);
+  }
+}
+
+function afterWin(){
+  winningScreen.classList.remove('animate-win');
+  winningScreen.classList.add('after-win');
+  setTimeout(function(){
+    winningScreen.style.transform = 'translateY(-300px)';
+    winningScreen.classList.remove('after-win');
+  },750);
+};
+const restart = document.getElementById('restart');
+restart.addEventListener('click', function(){
+  afterWin();
+  endGame();
 });
 
-
-
+const playAgain = document.getElementById('play-again');
+playAgain.addEventListener('click',function(){
+  afterWin();
+  shuffle();
+});
